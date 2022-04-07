@@ -8,6 +8,10 @@ const Navbar = () => {
   const linksContainrRef = useRef(null)
   const linksRef = useRef(null)
 
+  const toggleLinks = () => {
+    setShowLinks(!showLinks)
+  }
+
   useEffect(() => {
     const linksHeight = linksRef.current.getBoundingClientRect().height
     if(showLinks){
@@ -26,8 +30,8 @@ const Navbar = () => {
             <FaBars />
           </button>
         </div>
-        <div className='links-container show-container'>
-          <ul className='links'>
+        <div className='links-container' ref={linksContainrRef}>
+          <ul className='links' ref={linksRef}>
             {links.map((link) => {
               const {id, url, text} = link
               return (
@@ -38,7 +42,7 @@ const Navbar = () => {
             })}
           </ul>
         </div>
-        <ul className='social-links'>
+        <ul className='social-icons'>
           {social.map((socialIcon) => {
             const {id, url, icon} = socialIcon
             return (
@@ -50,7 +54,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navbar
